@@ -2,6 +2,7 @@ package loggable
 
 import (
 	"encoding/json"
+	"fmt"
 	"reflect"
 
 	"github.com/gofrs/uuid"
@@ -89,7 +90,7 @@ func addUpdateRecord(scope *gorm.Scope, opts options) error {
 
 	if opts.computeDiff {
 		diff := computeUpdateDiff(scope)
-
+		fmt.Printf("diff %s\n", diff)
 		if diff != nil {
 			jd, err := json.Marshal(diff)
 			if err != nil {
@@ -97,6 +98,8 @@ func addUpdateRecord(scope *gorm.Scope, opts options) error {
 			}
 			println("before updating rawdiff")
 			cl.RawDiff = string(jd)
+		} else {
+			fmt.Println("diff is null")
 		}
 	}
 
