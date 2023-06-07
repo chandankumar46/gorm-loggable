@@ -33,6 +33,7 @@ func (im *identityManager) save(value, pk interface{}) {
 }
 
 func (im identityManager) get(value, pk interface{}) interface{} {
+	fmt.Printf("identityMap: %s\n", im)
 	t := reflect.TypeOf(value)
 	key := genIdentityKey(t, pk)
 	m, ok := im.m[key]
