@@ -81,6 +81,7 @@ func (p *Plugin) addDeleted(scope *gorm.Scope) {
 }
 
 func addUpdateRecord(scope *gorm.Scope, opts options) error {
+	println("before updating record")
 	cl, err := newChangeLog(scope, actionUpdate)
 	if err != nil {
 		return err
@@ -94,7 +95,7 @@ func addUpdateRecord(scope *gorm.Scope, opts options) error {
 			if err != nil {
 				return err
 			}
-
+			println("before updating rawdiff")
 			cl.RawDiff = string(jd)
 		}
 	}
